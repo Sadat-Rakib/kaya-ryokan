@@ -1,0 +1,478 @@
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kaya, an onsen ryokan in the Onodani valley</title>
+<meta name="description" content="Eleven rooms and three baths at the closed end of the Onodani valley. The spring runs at 42.4°C and has done since 1904.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 24'%3E%3Crect width='22' height='24' fill='%233c2c36'/%3E%3Cg fill='%23fff'%3E%3Cpath d='M2.4 12.6h17.2v2.1c0 3.9-3.2 7.1-7.1 7.1H9.5c-3.9 0-7.1-3.2-7.1-7.1v-2.1Z'/%3E%3Cpath fill='none' stroke='%23fff' stroke-width='1.9' stroke-linecap='round' d='M7 3.4c1.4 1.3 1.4 2.4 0 3.7s-1.4 2.4 0 3.7'/%3E%3Cpath fill='none' stroke='%23fff' stroke-width='1.9' stroke-linecap='round' d='M11 1.8c1.4 1.3 1.4 2.4 0 3.7s-1.4 2.4 0 3.7'/%3E%3Cpath fill='none' stroke='%23fff' stroke-width='1.9' stroke-linecap='round' d='M15 3.4c1.4 1.3 1.4 2.4 0 3.7s-1.4 2.4 0 3.7'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.8.0/kaya/styles.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.8.0/kaya/dock.css">
+<!-- GSAP core + plugins (all free as of 3.13). Globals: gsap, ScrollTrigger, SplitText -->
+<script src="https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.8.0/kaya/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.8.0/kaya/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.8.0/kaya/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.8.0/kaya/lenis.min.js"></script>
+<script defer="" src="https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.8.0/kaya/dock.js"></script>
+<script defer="" src="https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.8.0/kaya/main.js"></script>
+<script src="https://cdn.tailwindcss.com"></script></head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor" aria-hidden="true"></div>
+
+<!-- ── loader: up from black, a rule that fills, a count ─────────────────────── -->
+<div class="loader" aria-hidden="true">
+  <div class="loader__inner">
+    <span class="loader__mark">茅</span>
+    <span class="loader__name">Kaya</span>
+    <span class="loader__rule"><i></i></span>
+    <span class="loader__count" data-count=""><i>0</i><i>0</i><i>0</i></span>
+  </div>
+</div>
+
+
+<!-- ── topbar ───────────────────────────────────────────────────────
+     The wordmark and the dock live in the page rather than in the hero frame,
+     so they outlive the dive and stay for the whole scroll. Both are lifted
+     verbatim out of the built hero by build/build.mjs, between the markers
+     below, so the page's nav and the hero's nav can never drift apart.
+     build.mjs hides the hero's own copies whenever it is embedded. -->
+<header class="topbar" data-topbar="">
+<!-- KAYA:TOPBAR:START -->
+    <a class="wordmark fade" style="--d:200ms; --pd:6" href="#top" aria-label="Kaya, home">
+      <span class="mk" aria-hidden="true">茅</span>
+      <span class="nm">Kaya</span>
+      <span class="sb">Onodani</span>
+    </a>
+  
+    <div class="dock-wrap">
+      <nav class="dock par-dock" style="--pd:5" data-spec="" aria-label="Primary">
+        <a class="dock-item dock-mark" data-dock="" data-spec="" data-burst="" href="#top" style="--d:120ms" aria-label="Kaya, home">
+          <svg viewBox="0 0 22 24" aria-hidden="true">
+            <path d="M2.4 12.6h17.2v2.1c0 3.9-3.2 7.1-7.1 7.1H9.5c-3.9 0-7.1-3.2-7.1-7.1v-2.1Z"></path>
+            <path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" d="M7 3.4c1.4 1.3 1.4 2.4 0 3.7s-1.4 2.4 0 3.7"></path>
+            <path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" d="M11 1.8c1.4 1.3 1.4 2.4 0 3.7s-1.4 2.4 0 3.7"></path>
+            <path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" d="M15 3.4c1.4 1.3 1.4 2.4 0 3.7s-1.4 2.4 0 3.7"></path>
+          </svg>
+        </a>
+        <a class="dock-item is-active" data-dock="" data-spec="" data-burst="" href="#rooms" style="--d:180ms">
+          <span class="glyph" aria-hidden="true">
+            <svg viewBox="0 0 16 16"><path d="M3.2 3h9.6v10H3.2z"></path><path d="M3.2 7.4h9.6"></path><path d="M8 3v10"></path></svg>
+          </span>
+          <span>Rooms</span>
+        </a>
+        <a class="dock-item" data-dock="" data-spec="" data-burst="" href="#water" style="--d:230ms">
+          <span class="glyph" aria-hidden="true">
+            <svg viewBox="0 0 16 16"><path d="M2.2 11.6c1.45 0 1.45 1.15 2.9 1.15S6.55 11.6 8 11.6s1.45 1.15 2.9 1.15 1.45-1.15 2.9-1.15"></path><path d="M6.2 3.2c1 .9 1 1.7 0 2.6s-1 1.7 0 2.6"></path><path d="M9.9 4.3c.8.72.8 1.36 0 2.08s-.8 1.36 0 2.08"></path></svg>
+          </span>
+          <span>Baths</span>
+        </a>
+        <a class="dock-item" data-dock="" data-spec="" data-burst="" href="#day" style="--d:280ms">
+          <span class="glyph" aria-hidden="true">
+            <svg viewBox="0 0 16 16"><path d="M4 2.4h5.3L12 5.1v8.5H4z"></path><path d="M9.2 2.4V5h2.7"></path><path d="M6 8.4h4M6 10.8h2.8"></path></svg>
+          </span>
+          <span>A day</span>
+        </a>
+        <a class="dock-item dock-item--enter" data-dock="" data-spec="" data-burst="" href="#stay" style="--d:330ms">
+          <span class="glyph" aria-hidden="true">
+            <svg viewBox="0 0 16 16"><path d="M6.6 2.5h5.1a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H6.6"></path><path d="M2.6 8h6.6"></path><path d="m7 5.6 2.4 2.4L7 10.4"></path></svg>
+          </span>
+          <span>Book</span>
+        </a>
+      </nav>
+    </div>
+  <!-- KAYA:TOPBAR:END -->
+</header>
+
+<!-- ── hero ────────────────────────────────────────────────────────
+     The scroll flies the scene's camera forward into the blossom. Chapter 01
+     lives INSIDE the hero, underneath the frame, because the dive ends by
+     winding the scene's ground to transparent and revealing it through the
+     canopy. It could not do that from further down the page.
+
+     The hero is held with position:sticky inside .hero-track rather than with
+     a ScrollTrigger pin. A pin wraps its element in a .pin-spacer, and
+     reparenting an <iframe> makes the browser navigate it a second time, so
+     the scene was rebooting itself part way through the intro. -->
+<div class="hero-track" id="top">
+<header class="hero" id="arrival">
+  <div class="hero__into">
+    <!-- its own element rather than a background on .hero__into, so the exit
+         parallax has something it can transform. The still is still declared on
+         the box in CSS: it is the poster, and it is what shows if the film
+         fails to load. -->
+    <div class="hero__photo" aria-hidden="true">
+      <video src="https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.8.0/kaya/arrival.mp4" poster="https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.8.0/kaya/arrival-v2.png" autoplay="" muted="" loop="" playsinline="" preload="auto" disablepictureinpicture=""></video>
+    </div>
+
+
+    <div class="chapter__head">
+      <p class="label" data-into="">01 / Arrival</p>
+      <p class="label" data-into="">Onodani valley, Nagano</p>
+    </div>
+
+    <div class="hero__col">
+      <h2 class="display display--wide" data-lines="">
+        You will be met at the road and after that <em>nothing</em> is asked of you.
+      </h2>
+
+      <!-- the second beat of the same screen: it arrives on scroll once the
+           headline has settled, and only then does the page move on -->
+      <div class="into__more">
+        <div class="arrival__body">
+          <p class="body-copy" data-more="">
+            Kaya is eleven rooms and three baths under one thatched roof, at the closed
+            end of a valley that takes forty minutes to drive and about a day to stop
+            hearing.
+          </p>
+          <p class="body-copy" data-more="">
+            There is no key to your room. Dinner is at half past six because that is when
+            it is ready. Beyond those two facts the house has no opinion about how you
+            spend the time.
+          </p>
+        </div>
+
+        <span class="rule-draw" data-more="" aria-hidden="true"><i></i></span>
+
+        <ul class="facts">
+          <li data-more=""><b>1904</b><span>Established</span></li>
+          <li data-more=""><b>Eleven</b><span>Rooms</span></li>
+          <li data-more=""><b>Three</b><span>Baths</span></li>
+          <li data-more=""><b>One</b><span>Seating for dinner</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <iframe class="hero__frame" title="Kaya, cherry boughs in blossom over the valley at dusk" scrolling="no"></iframe>
+</header>
+</div>
+
+<div class="page">
+
+  <!-- ══ 02 THE WATER ═════════════════════════════════════════════
+       Signature moment A. The bath-house plan is the section rather than a
+       layer over a photograph: at full width on paper the linework is finally
+       legible, and it draws itself as the section passes, the way an architect
+       annotates a finished building. -->
+  <section class="chapter chapter--paper" id="water">
+    <div class="chapter__head">
+      <p class="label" data-reveal="">02 / The water</p>
+      <p class="label" data-reveal="">Yumori spring · 42.4°C at source</p>
+    </div>
+
+    <div class="water__open">
+      <h2 class="display" data-lines="">The water was here <em>first</em>.</h2>
+      <div class="water__lede">
+        <p class="body-copy" data-reveal="">
+          The spring rises three hundred metres behind the house and reaches the baths
+          in about eleven minutes. Long enough to lose two degrees, not long enough to
+          lose anything else. It is drawn straight from the source, never reheated,
+          never recirculated, and never topped up with anything but itself.
+        </p>
+        <ul class="water__spec">
+          <li data-reveal=""><b>Simple alkaline</b><span>Spring type</span></li>
+          <li data-reveal=""><b>pH 8.6</b><span>At source</span></li>
+          <li data-reveal=""><b>210 L / min</b><span>Yield</span></li>
+          <li data-reveal=""><b>Free-flowing</b><span>Never reheated</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <figure class="plan">
+      <div class="plan__sheet">
+        <img src="https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.8.0/kaya/water-overview-v3.png" alt="An elevated sunset view of Kaya's three baths beside a mountain stream in the Onodani valley" loading="lazy" decoding="async">
+      </div>
+      <figcaption class="plan__caption">The three baths · Onodani, Nagano</figcaption>
+    </figure>
+
+    <dl class="waters">
+      <div data-reveal="" data-bath="yumori">
+        <dt>Yumori</dt>
+        <dd class="temp">42.4°</dd>
+        <dd>The rotenburo, open to the valley. It holds twelve and has never held
+        more than five. Go in the last hour of light.</dd>
+      </div>
+      <div data-reveal="" data-bath="hinoki">
+        <dt>Hinoki</dt>
+        <dd class="temp">41.0°</dd>
+        <dd>Indoor, cedar, rebuilt in 2019 from a single tree. One window, and it
+        faces the moss.</dd>
+      </div>
+      <div data-reveal="" data-bath="kama">
+        <dt>Kama</dt>
+        <dd class="temp">14.8°</dd>
+        <dd>Straight off the stream, unheated and untouched. Ninety seconds is a
+        long time in it.</dd>
+      </div>
+    </dl>
+
+    <div class="water__close">
+      <!-- One frame, three photographs. Hovering a bath above brings its own
+           up; Yumori is what it rests on. All three stay in the accessibility
+           tree, so nothing is only available to a pointer. -->
+      <figure class="water__photo">
+        <img data-bath="yumori" class="is-on" src="https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.8.0/kaya/bath-yumori-v2.png" alt="Yumori: the steaming outdoor stone bath looking across the valley in the last light" loading="lazy" decoding="async">
+        <img data-bath="hinoki" src="https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.8.0/kaya/bath-hinoki-v2.png" alt="Hinoki: the indoor cypress bath lit by one broad window facing the moss" loading="lazy" decoding="async">
+        <img data-bath="kama" src="https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.8.0/kaya/bath-kama-v2.png" alt="Kama: the cold stone plunge beside the stream, with clear water running directly into it" loading="lazy" decoding="async">
+        <figcaption class="water__cap">
+          <span data-bath="yumori" class="is-on">Yumori · the rotenburo</span>
+          <span data-bath="hinoki">Hinoki · indoor, cedar</span>
+          <span data-bath="kama">Kama · the cold one</span>
+        </figcaption>
+      </figure>
+      <!-- one per bath, stacked in a single grid cell so the block is sized by
+           the longest of them and nothing shifts as they cross-fade -->
+      <div class="water__quotes" data-reveal="">
+        <blockquote class="pull is-on" data-bath="yumori">
+          It has come up at forty-two degrees every day since the house was built,
+          and it will keep coming up at forty-two degrees long after. It does not
+          know you are coming.
+          <cite>Yumori · the rotenburo</cite>
+        </blockquote>
+        <blockquote class="pull" data-bath="hinoki">
+          The tub was cut from a single tree, and for fifteen years or so it will
+          smell like that tree. After that it is simply a very good bath, which is
+          no small thing.
+          <cite>Hinoki · rebuilt in 2019</cite>
+        </blockquote>
+        <blockquote class="pull" data-bath="kama">
+          Nobody needs telling how long to stay in it. You come out when you come
+          out, and then you go back to the hot one. That is the whole arrangement.
+          <cite>Kama · fed straight off the stream</cite>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 03 THE YEAR ══════════════════════════════════════════════
+       This slot used to hold a blank-beat interstitial. It was a technique
+       with no job: one mood line in a page whose voice is otherwise specific,
+       and a full screen of pinned scroll to deliver it. The year does real
+       work instead. It explains why the hero is covered in blossom, and it
+       answers the question a hospitality page most needs to answer, which is
+       when to come. -->
+  <section class="chapter chapter--plum" id="seasons">
+    <div class="chapter__head">
+      <p class="label" data-reveal="">03 / The year</p>
+      <p class="label" data-reveal="">1,100 metres · three weeks behind the city</p>
+    </div>
+
+    <div class="chapter__open">
+      <h2 class="display" data-lines="">The blossom you arrived on lasts <em>nine days</em>.</h2>
+      <p class="body-copy" data-reveal="">
+        Onodani sits at eleven hundred metres, so the valley runs about three weeks
+        behind the city and everything here happens later than the calendar says it
+        should. What follows is when things actually happen, which is the only
+        version worth booking against.
+      </p>
+    </div>
+
+    <ol class="seasons__list">
+      <li data-reveal="">
+        <span class="seasons__mark" aria-hidden="true">春</span>
+        <div class="seasons__media"><img src="https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.8.0/kaya/season-spring-v2.png" alt="Spring blossom above Kaya's steaming outdoor stone bath in the cool mountain mist" loading="lazy" decoding="async"></div>
+        <h3 class="seasons__name">Spring</h3>
+        <p class="seasons__when">Late April to mid-May</p>
+        <p class="seasons__note">The blossom opens around the twenty-eighth and is gone by the eighth. Nine days, most years. The water is warm and the air is not, which is the whole reason to be in it.</p>
+      </li>
+      <li data-reveal="">
+        <span class="seasons__mark" aria-hidden="true">夏</span>
+        <div class="seasons__media"><img src="https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.8.0/kaya/season-summer-v2.png" alt="The summer river rushing beside Kaya's cold stream-fed plunge under the green cedar canopy" loading="lazy" decoding="async"></div>
+        <h3 class="seasons__name">Summer</h3>
+        <p class="seasons__when">June to August</p>
+        <p class="seasons__note">The river runs loud enough to sleep through and the nights stay under twenty degrees. The one season in which the cold plunge makes obvious sense.</p>
+      </li>
+      <li data-reveal="">
+        <span class="seasons__mark" aria-hidden="true">秋</span>
+        <div class="seasons__media"><img src="https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.8.0/kaya/season-autumn-v2.png" alt="Autumn maple covering the east ridge above Kaya's dark cedar and thatched roofs" loading="lazy" decoding="async"></div>
+        <h3 class="seasons__name">Autumn</h3>
+        <p class="seasons__when">Mid-October to November</p>
+        <p class="seasons__note">Maple the whole length of the east ridge. The busiest four weeks we have, and the only ones we ask you to book well ahead for.</p>
+      </li>
+      <li data-reveal="">
+        <span class="seasons__mark" aria-hidden="true">冬</span>
+        <div class="seasons__media"><img src="https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.8.0/kaya/season-winter-v2.png" alt="Deep winter snow reaching Kaya's eaves beside the steaming rotenburo at blue dawn" loading="lazy" decoding="async"></div>
+        <h3 class="seasons__name">Winter</h3>
+        <p class="seasons__when">December to March</p>
+        <p class="seasons__note">Snow to the eaves and the rotenburo steaming up through it. The road is cleared by seven each morning. Eleven rooms, and most nights fewer than eleven guests.</p>
+      </li>
+    </ol>
+
+    <p class="seasons__foot" data-reveal="">
+      Rooms open twelve months ahead. The autumn weeks go first.
+    </p>
+  </section>
+
+  <!-- ══ 03 THE ROOMS ═════════════════════════════════════════════ -->
+  <section class="chapter chapter--paper" id="rooms">
+    <div class="chapter__head">
+      <p class="label" data-reveal="">04 / The rooms</p>
+      <p class="label" data-reveal="">Eleven, none of them the same</p>
+    </div>
+
+    <div class="chapter__open">
+      <h2 class="display" data-lines="">No architect drew these rooms. <em>The house did.</em></h2>
+      <p class="body-copy" data-reveal="">
+        Eleven rooms in a building that has grown in every direction since 1904.
+        One has its own cedar tub off the back, one is dark on purpose, one takes
+        the whole ridge through a wall of shoji. There are no tiers here and
+        nothing to upgrade to. Tell us what you would like to wake up to and we
+        will put you in the right one.
+      </p>
+    </div>
+
+    <div class="rooms">
+      <article class="room room--a">
+        <div class="room__media" data-room-media="">
+          <img src="https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.8.0/kaya/room-01-v2.png" alt="Kaya-no-ma's wall-wide corner shoji framing the misty Onodani ridge above a quiet tatami room" loading="lazy" decoding="async">
+        </div>
+        <div class="room__side">
+          <p class="room__no" data-reveal="">01</p>
+          <div class="room__text">
+            <h3 class="room__name" data-reveal="">Kaya‑no‑ma</h3>
+            <p class="room__meta" data-reveal="">Onodani, Nagano · 2 guests · valley side</p>
+            <p class="room__note" data-reveal="">The corner room. Shoji the full width of the wall, and the ridge line right where you would put a painting.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="room room--b">
+        <div class="room__media" data-room-media="">
+          <img src="https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.8.0/kaya/room-02-v2.png" alt="Two futons laid out in Yamane beside one low paper lamp, with the moonlit moss garden beyond" loading="lazy" decoding="async">
+        </div>
+        <div class="room__side">
+          <p class="room__no" data-reveal="">02</p>
+          <div class="room__text">
+            <h3 class="room__name" data-reveal="">Yamane</h3>
+            <p class="room__meta" data-reveal="">Onodani, Nagano · 2 guests · garden side</p>
+            <p class="room__note" data-reveal="">Darkest of the eleven, and the one people ask for twice. The futon is laid while you are at dinner.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="room room--c">
+        <div class="room__media" data-room-media="">
+          <img src="https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.8.0/kaya/room-03-v2.png" alt="Yumori-no-ma opening from its tatami room onto a private steaming cedar bath in the moss garden" loading="lazy" decoding="async">
+        </div>
+        <div class="room__side">
+          <p class="room__no" data-reveal="">03</p>
+          <div class="room__text">
+            <h3 class="room__name" data-reveal="">Yumori‑no‑ma</h3>
+            <p class="room__meta" data-reveal="">Onodani, Nagano · 2 guests · own bath</p>
+            <p class="room__note" data-reveal="">Its own cedar tub off the back, fed from the same spring. You will not need the bath house, but go anyway.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="rooms__foot">
+      <p class="label" data-reveal="">From ¥46,000 per person · dinner and breakfast included</p>
+      <p class="label label--accent" data-reveal="">Open all year except the second week of March</p>
+    </div>
+  </section>
+
+  <!-- ══ 04 A DAY AT KAYA ══════════════════════════════════════════
+       Signature moment B: the section pins and the scroll scrubs the light
+       from afternoon to the following dawn. The hour numerals drift sideways
+       at a different rate than the sky moves. -->
+  <section class="day" id="day">
+    <div class="day__stage">
+      <div class="day__sky" aria-hidden="true"></div>
+
+      <!-- One photograph per hour, full bleed, dissolving into each other as
+           the scroll moves through the day. The sky behind them is the fallback
+           if an image fails to load, and still tints the frame between shots. -->
+      <div class="day__shots" aria-hidden="true">
+        <img data-shot="" src="https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.8.0/kaya/day-arrival-v2.png" alt="" loading="lazy" decoding="async">
+        <img data-shot="" src="https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.8.0/kaya/day-bath-v2.png" alt="" loading="lazy" decoding="async">
+        <img data-shot="" src="https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.8.0/kaya/day-table-v2.png" alt="" loading="lazy" decoding="async">
+        <img data-shot="" src="https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.8.0/kaya/day-quiet-v2.png" alt="" loading="lazy" decoding="async">
+        <!-- the 06:00 beat is a film. It carries data-shot like the stills, so
+             the day's scrub dissolves it in exactly the same way. -->
+        <video data-shot="" poster="https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.8.0/kaya/day-firstlight-v2.png" autoplay="" muted="" loop="" playsinline="" preload="auto" disablepictureinpicture="">
+          <source src="https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.8.0/kaya/day-firstlight.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="day__ridge" hidden="" aria-hidden="true">
+        <svg viewBox="0 0 1600 400" preserveAspectRatio="none">
+          <path fill="rgba(23,17,22,.55)" d="M0 240 L180 176 L330 224 L520 140 L700 210 L880 150 L1080 226 L1270 168 L1440 232 L1600 190 V400 H0 Z"></path>
+          <path fill="rgba(23,17,22,.92)" d="M0 300 L200 246 L390 292 L580 224 L760 286 L960 232 L1160 296 L1360 244 L1600 300 V400 H0 Z"></path>
+        </svg>
+      </div>
+
+      <div class="day__head">
+        <p class="label">05 / A day at Kaya</p>
+        <p class="label">Five hours that matter</p>
+      </div>
+
+      <div class="day__body">
+        <div class="day__hours">
+          <span class="hour" data-hour="">15:00</span>
+          <span class="hour" data-hour="">17:30</span>
+          <span class="hour" data-hour="">18:30</span>
+          <span class="hour" data-hour="">21:00</span>
+          <span class="hour" data-hour="">06:00</span>
+        </div>
+        <div class="day__caption">
+          <p data-cap="">Tea and a hot towel in the entrance hall. Someone takes your bag, and you do not see it again until it is already in your room.</p>
+          <p data-cap="">The rotenburo is best now, while the valley still has some colour left in it and the stone is warmer than the air.</p>
+          <p data-cap="">One seating, one menu. Whatever the river and the hillside gave up this week, cooked by people who saw it arrive.</p>
+          <p data-cap="">Lights go down along the corridor. The house starts making its own noises, and none of them are yours to deal with.</p>
+          <p data-cap="">The water is hottest before anyone else is awake. Take the ladle, take the far end, and watch the mist come off the ridge.</p>
+        </div>
+      </div>
+
+      <div class="day__foot">
+        <div>
+          <p class="ticker">
+            <span data-tick="">Arrival</span>
+            <span data-tick="">Bath</span>
+            <span data-tick="">Table</span>
+            <span data-tick="">Quiet</span>
+            <span data-tick="">First light</span>
+          </p>
+          <div class="day__bar"><i></i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ STAY ═══════════════════════════════════════════════════ -->
+  <!-- ══ STAY ══════════════════════════════════════════════════
+       The page closes in the blossom it opened in: the same ThreeUI scene, in
+       ?scene mode, which strips every piece of interface and leaves the world.
+       It is held behind the day section, which lifts off it like a sheet. -->
+  <div class="stay-wrap">
+  <footer class="stay" id="stay">
+    <iframe class="stay__scene" title="" aria-hidden="true" tabindex="-1" scrolling="no" loading="lazy"></iframe>
+
+    <h2 class="display" data-lines="">Every season here<br>ends in the same<br><em>warm water.</em></h2>
+    <a class="stay__mail" data-magnetic="" href="mailto:stay@kaya-onodani.jp">stay@kaya-onodani.jp</a>
+
+    <ul class="stay__meta">
+      <li>36.42°N 137.94°E</li>
+      <li>Onodani, Nagano</li>
+      <li>Established 1904</li>
+      <li>Eleven rooms, three baths</li>
+    </ul>
+  </footer>
+  </div>
+
+</div>
+<script>
+/* The hero document is fetched once and mounted into both frames as srcdoc.
+   A cross-origin iframe would put contentDocument out of reach and the dive
+   would die silently, so it is deliberately not pointed straight at the CDN. */
+(function () {
+  fetch('https://cdn.jsdelivr.net/gh/Sam1983Aing/aura-assets@1.8.0/kaya/hero-srcdoc.html').then(function (r) { return r.text(); }).then(function (doc) {
+    var scene = doc.replace('/*KAYA_SCENE_FLAG*/', 'document.documentElement.className += " kaya-scene";');
+    document.querySelector('.hero__frame').srcdoc = doc;
+    document.querySelector('.stay__scene').srcdoc = scene;
+  });
+  document.addEventListener('error', function (e) {
+    var el = e.target;
+    if (el && (el.tagName === 'IMG' || el.tagName === 'VIDEO')) el.style.display = 'none';
+  }, true);
+})();
+</script>
+
+</body></html>
